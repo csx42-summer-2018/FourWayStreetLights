@@ -13,7 +13,7 @@ public class Logger {
 
     // FIXME: Add more enum values as needed for the assignment
     public static enum DebugLevel {
-        CONSTRUCTOR, FILE_PROCESSOR, CONTEXT, NONE
+       NONE, CONSTRUCTOR, FILE_PROCESSOR, CONTEXT , RESULTS
     };
 
     private static DebugLevel debugLevel;
@@ -21,6 +21,9 @@ public class Logger {
     // FIXME: Add switch cases for all the levels
     public static void setDebugValue(int levelIn) {
         switch (levelIn) {
+            case 4:
+                debugLevel = DebugLevel.RESULTS;
+                break;
             case 3:
                 debugLevel = DebugLevel.CONTEXT;
                 break;
