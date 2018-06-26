@@ -9,6 +9,26 @@ package fourWayStreetLights.service;
  *
  * @author amitk
  */
-public class StartStateImpl {
+public class StartStateImpl implements StreetLightsStateI{
+
+    @Override
+    public void addCars(int numCars) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void leaveCars(int numCars) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void turnRed() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void turnGreen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

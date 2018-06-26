@@ -10,5 +10,8 @@ package fourWayStreetLights.service;
  * @author amitk
  */
 public interface StreetLightsStateI {
-    
+    void addCars(int numCars);
+    void leaveCars(int numCars);
+    void turnRed();
+    void turnGreen();
 }
