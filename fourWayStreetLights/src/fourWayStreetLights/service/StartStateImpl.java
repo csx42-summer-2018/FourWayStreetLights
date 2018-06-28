@@ -22,63 +22,104 @@ public class StartStateImpl implements StreetLightsStateI {
         this.results = resultsParam;
     }
 
+    /**
+     * add new vehicle(s) on north side
+     *
+     * @return boolean to let know if vehicle should be passed.
+     *
+     * @param numvehicles
+     */
     @Override
-    public boolean addVehicalsToNorth(int numVehicals) {
-        Logger.writeMessage("Entering a addVehicalsToNorth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+    public boolean addvehiclesToNorth(int numvehicles) {
+        Logger.writeMessage("Entering a addvehiclesToNorth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
-        results.storeNewResult(numVehicals + " vehical(s) added on north.");
-        numVehicals += streetLightsContext.getNumVehicalsNorth();
-        streetLightsContext.setNumVehicalsNorth(numVehicals);
-        Logger.writeMessage("Leaving a addVehicalsToNorth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+        results.storeNewResult(numvehicles + " vehicle(s) added on north.");
+        numvehicles += streetLightsContext.getNumvehiclesNorth();
+        streetLightsContext.setNumvehiclesNorth(numvehicles);
+        Logger.writeMessage("Leaving a addvehiclesToNorth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
         return false;
     }
 
+     /**
+     * add new vehicle(s) on south side
+     *
+     * @return boolean to let know if vehicle should be passed.
+     *
+     * @param numvehicles
+     */
     @Override
-    public boolean addVehicalsToSouth(int numVehicals) {
-        Logger.writeMessage("Entering a addVehicalsToSouth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+    public boolean addvehiclesToSouth(int numvehicles) {
+        Logger.writeMessage("Entering a addvehiclesToSouth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
-        results.storeNewResult(numVehicals + " vehical(s) added on south.");
-        numVehicals += streetLightsContext.getNumVehicalsSouth();
-        streetLightsContext.setNumVehicalsSouth(numVehicals);
-        Logger.writeMessage("Leaving a addVehicalsToSouth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+        results.storeNewResult(numvehicles + " vehicle(s) added on south.");
+        numvehicles += streetLightsContext.getNumvehiclesSouth();
+        streetLightsContext.setNumvehiclesSouth(numvehicles);
+        Logger.writeMessage("Leaving a addvehiclesToSouth() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
         return false;
     }
 
+     /**
+     * add new vehicle(s) on east side
+     *
+     * @return boolean to let know if vehicle should be passed.
+     *
+     * @param numvehicles
+     */
     @Override
-    public boolean addVehicalsToEast(int numVehicals) {
-        Logger.writeMessage("Entering a addVehicalsToEast() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+    public boolean addvehiclesToEast(int numvehicles) {
+        Logger.writeMessage("Entering a addvehiclesToEast() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
-        results.storeNewResult(numVehicals + " vehical(s) added on east.");
-        numVehicals += streetLightsContext.getNumVehicalsEast();
-        streetLightsContext.setNumVehicalsEast(numVehicals);
-        Logger.writeMessage("Leaving a addVehicalsToEast() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+        results.storeNewResult(numvehicles + " vehicle(s) added on east.");
+        numvehicles += streetLightsContext.getNumvehiclesEast();
+        streetLightsContext.setNumvehiclesEast(numvehicles);
+        Logger.writeMessage("Leaving a addvehiclesToEast() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
         return false;
     }
 
+     /**
+     * add new vehicle(s) on west side
+     *
+     * @return boolean to let know if vehicle should be passed.
+     *
+     * @param numvehicles
+     */
     @Override
-    public boolean addVehicalsToWest(int numVehicals) {
-        Logger.writeMessage("Entering a addVehicalsToWest() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+    public boolean addvehiclesToWest(int numvehicles) {
+        Logger.writeMessage("Entering a addvehiclesToWest() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
-        results.storeNewResult(numVehicals + " vehical(s) added on west.");
-        numVehicals += streetLightsContext.getNumVehicalsWest();
-        streetLightsContext.setNumVehicalsWest(numVehicals);
-        Logger.writeMessage("Leaving a addVehicalsToWest() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+        results.storeNewResult(numvehicles + " vehicle(s) added on west.");
+        numvehicles += streetLightsContext.getNumvehiclesWest();
+        streetLightsContext.setNumvehiclesWest(numvehicles);
+        Logger.writeMessage("Leaving a addvehiclesToWest() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
         return false;
     }
 
+    /**
+     * pass vehicle(s) upto max range on east side and change state after max
+     * range
+     *
+     * @return void
+     *
+     */
     @Override
-    public void passVehicals() {
-        Logger.writeMessage("Entering a passVehicals() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+    public void passvehicles() {
+        Logger.writeMessage("Entering a passvehicles() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
 
-        results.storeNewResult("No vehical pass as all lights are red");
+        results.storeNewResult("No vehicle pass as all lights are red");
 
-        Logger.writeMessage("Leaving a passVehicals() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
+        Logger.writeMessage("Leaving a passvehicles() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+      /**
+     * turn north to red
+     *
+     * @return void
+     *
+     */
     @Override
     public void turnNorthRed() {
         Logger.writeMessage("Entering a turnNorthRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -88,6 +129,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnNorthRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+    /**
+     * turn north to green
+     *
+     * @return void
+     *
+     */
     @Override
     public void turnNorthGreen() {
         Logger.writeMessage("Entering a turnNorthGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -98,6 +145,12 @@ public class StartStateImpl implements StreetLightsStateI {
 
     }
 
+     /**
+     * turn south to red
+     *
+     * @return void
+     *
+     */
     @Override
     public void turnSouthRed() {
         Logger.writeMessage("Entering a turnSouthRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -107,6 +160,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnSouthRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+     /**
+     * turn south to green
+     *
+     * @return void
+     *
+     */
     @Override
     public void turnSouthGreen() {
         Logger.writeMessage("Entering a turnSouthGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -117,6 +176,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnSouthGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+    /**
+     * turn east to red
+     *
+     * return void
+     *
+     */
     @Override
     public void turnEastRed() {
         Logger.writeMessage("Entering a turnEastRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -126,6 +191,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnEastRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+     /**
+     * turn east to green
+     *
+     * return void
+     *
+     */
     @Override
     public void turnEastGreen() {
         Logger.writeMessage("Entering a turnEastGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -136,6 +207,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnEastGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+    /**
+     * turn west to red
+     *
+     * return void
+     *
+     */
     @Override
     public void turnWestRed() {
         Logger.writeMessage("Entering a turnWestRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -145,6 +222,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnWestRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+    /**
+     * turn west to green
+     *
+     * return void
+     *
+     */
     @Override
     public void turnWestGreen() {
         Logger.writeMessage("Entering a turnWestGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -155,6 +238,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnWestGreen() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
 
+    /**
+     * turn all signals to red
+     *
+     * return void
+     *
+     */
     @Override
     public void turnAllRed() {
         Logger.writeMessage("Entering a turnAllRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
@@ -164,6 +253,12 @@ public class StartStateImpl implements StreetLightsStateI {
         Logger.writeMessage("Leaving a turnAllRed() method of StartStateImpl Class", Logger.DebugLevel.START_STATE_IMPL);
     }
     
+    /**
+     * overrides the default string for this class
+     *
+     * return String
+     *
+     */
      @Override
      public String toString() {
         return "Start State where all states are red";

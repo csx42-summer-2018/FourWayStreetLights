@@ -11,15 +11,15 @@ package fourWayStreetLights.service;
  */
 public interface StreetLightsStateI {
 
-    boolean addVehicalsToNorth(int numVehicals);
+    boolean addvehiclesToNorth(int numvehicles);
 
-    boolean addVehicalsToSouth(int numVehicals);
+    boolean addvehiclesToSouth(int numvehicles);
 
-    boolean addVehicalsToEast(int numVehicals);
+    boolean addvehiclesToEast(int numvehicles);
 
-    boolean addVehicalsToWest(int numVehicals);
+    boolean addvehiclesToWest(int numvehicles);
 
-    void passVehicals();
+    void passvehicles();
 
     void turnNorthRed();
 

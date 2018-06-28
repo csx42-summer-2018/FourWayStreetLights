@@ -1,11 +1,11 @@
 turn north green
-add 2 vehical to east
-add 1 vehical to north
-add 2 vehical to north
+add 2 vehicle to east
+add 1 vehicle to north
+add 2 vehicle to north
 turn north red
-add 4 vehical to east
-add 1 vehical to south
-add 1 vehical to south
+add 4 vehicle to east
+add 1 vehicle to south
+add 1 vehicle to south
 turn west red
 turn all red
 turn west green

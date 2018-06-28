@@ -11,7 +11,10 @@ package fourWayStreetLights.util;
  */
 public class Logger {
 
-    // FIXME: Add more enum values as needed for the assignment
+    /**
+     * enums for debug level
+     *
+     */
     public static enum DebugLevel {
         NONE,
         FILE_PROCESSOR,
@@ -27,7 +30,13 @@ public class Logger {
 
     private static DebugLevel debugLevel;
 
-    // FIXME: Add switch cases for all the levels
+     /**
+     * set the debug level to appropriate debug level enum
+     *
+     * return void
+     * 
+     * @param levelIn (int)
+     */
     public static void setDebugValue(int levelIn) {
         switch (levelIn) {
             case 10:
@@ -66,10 +75,22 @@ public class Logger {
         }
     }
 
+     /**
+     * set debug level
+     *
+     * @param  levelIn (DebugLevel)
+     * return void
+     */
     public static void setDebugValue(DebugLevel levelIn) {
         debugLevel = levelIn;
     }
 
+     /**
+     * write a debug message on std out if same debug level is passed as it set earlier.
+     *
+     * @param  (message, levelin)
+     * return void
+     */
     public static void writeMessage(String message,
             DebugLevel levelIn) {
         if (levelIn == debugLevel) {
@@ -77,6 +98,13 @@ public class Logger {
         }
     }
 
+    
+     /**
+     * overrides toStrig() method to return current debug level set.
+     *
+     * @return String
+     */
+    @Override
     public String toString() {
         return "The debug level has been set to the following " + debugLevel;
     }

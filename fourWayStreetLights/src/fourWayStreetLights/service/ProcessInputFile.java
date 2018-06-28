@@ -61,15 +61,15 @@ public class ProcessInputFile {
                     System.exit(0);
                 }
             } else if (line.contains("ADD")) {
-                int numVehicals = 0;
+                int numvehicles = 0;
                 try {
-                    numVehicals = Integer.parseInt(line.split(" ")[1]);
+                    numvehicles = Integer.parseInt(line.split(" ")[1]);
                 } catch (NumberFormatException ex) {
                     System.err.println("Input format is not correct: " + ex.toString() + Arrays.toString(ex.getStackTrace()));
                     System.exit(0);
                 }
                 if (direction != null) {
-                    streetLightsContext.addVehicals(direction, numVehicals);
+                    streetLightsContext.addvehicles(direction, numvehicles);
                 } else {
                     System.err.println("Input format is not correct");
                     System.exit(0);

@@ -31,12 +31,12 @@ public class StreetLightsContext {
 
     StreetLightsStateI streetLightsI;
 
-    private int numVehicalsNorth;
-    private int numVehicalsSouth;
-    private int numVehicalsEast;
-    private int numVehicalsWest;
+    private int numvehiclesNorth;
+    private int numvehiclesSouth;
+    private int numvehiclesEast;
+    private int numvehiclesWest;
 
-    private final int maxVehicalPass = 2;
+    private final int maxvehiclePass = 2;
 
     private Results results;
 
@@ -51,38 +51,59 @@ public class StreetLightsContext {
         streetLightsI = startStateImpl;
     }
 
+    /**
+     * change/set state of streetLight
+     *
+     * @return void
+     *
+     * @param streetLightsIParam
+     */
     public void SetState(StreetLightsStateI streetLightsIParam) {
         Logger.writeMessage("Entering a SetState() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
 
         streetLightsI = streetLightsIParam;
-        streetLightsI.passVehicals();
+        streetLightsI.passvehicles();
         Logger.writeMessage("Leaving a SetState() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
     }
 
-    public void addVehicals(Directions direction, int numVehicals) {
-        Logger.writeMessage("Entering a addVehicals() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+    /**
+     * add new vehicle to specific direction
+     *
+     * @return void
+     *
+     * @param (direction, numvehicles)
+     */
+    public void addvehicles(Directions direction, int numvehicles) {
+        Logger.writeMessage("Entering a addvehicles() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
 
-        boolean isPassVehical = false;
+        boolean isPassvehicle = false;
         switch (direction) {
             case NORTH:
-                isPassVehical = streetLightsI.addVehicalsToNorth(numVehicals);
+                isPassvehicle = streetLightsI.addvehiclesToNorth(numvehicles);
                 break;
             case SOUTH:
-                isPassVehical = streetLightsI.addVehicalsToSouth(numVehicals);
+                isPassvehicle = streetLightsI.addvehiclesToSouth(numvehicles);
                 break;
             case EAST:
-                isPassVehical = streetLightsI.addVehicalsToEast(numVehicals);
+                isPassvehicle = streetLightsI.addvehiclesToEast(numvehicles);
                 break;
             case WEST:
-                isPassVehical = streetLightsI.addVehicalsToWest(numVehicals);
+                isPassvehicle = streetLightsI.addvehiclesToWest(numvehicles);
                 break;
         }
-        if (isPassVehical) {
-            streetLightsI.passVehicals();
+        if (isPassvehicle) {
+            streetLightsI.passvehicles();
         }
-        Logger.writeMessage("Leaving a addVehicals() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+        Logger.writeMessage("Leaving a addvehicles() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
     }
 
+     /**
+     * turn the lights red/green as specified in the param
+     *
+     * @return void
+     *
+     * @param (direction, tfColor)
+     */
     public void turnLight(Directions direction, TrafficLightColors tfColor) {
         Logger.writeMessage("Entering a turnLight() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
         switch (direction) {
@@ -134,62 +155,152 @@ public class StreetLightsContext {
         Logger.writeMessage("Leaving a turnLight() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
     }
 
-    public int getNumVehicalsNorth() {
-        return numVehicalsNorth;
+     /**
+     * getter for vehicle on north
+     *
+     * @return int
+     *
+     */
+    public int getNumvehiclesNorth() {
+        return numvehiclesNorth;
     }
 
-    public void setNumVehicalsNorth(int numVehicalsNorth) {
-        this.numVehicalsNorth = numVehicalsNorth;
+     /**
+     * setter for vehicle on north
+     *
+     * @return void
+     *
+     */
+    public void setNumvehiclesNorth(int numvehiclesNorth) {
+        this.numvehiclesNorth = numvehiclesNorth;
     }
 
-    public int getNumVehicalsSouth() {
-        return numVehicalsSouth;
+    /**
+     * getter for vehicle on south
+     *
+     * @return int
+     *
+     */
+    public int getNumvehiclesSouth() {
+        return numvehiclesSouth;
     }
 
-    public void setNumVehicalsSouth(int numVehicalsSouth) {
-        this.numVehicalsSouth = numVehicalsSouth;
+     /**
+     * setter for vehicle on south
+     *
+     * @return void
+     *
+     */
+    public void setNumvehiclesSouth(int numvehiclesSouth) {
+        this.numvehiclesSouth = numvehiclesSouth;
     }
 
-    public int getNumVehicalsEast() {
-        return numVehicalsEast;
+     /**
+     * getter for vehicle on east
+     *
+     * @return int
+     *
+     */
+    public int getNumvehiclesEast() {
+        return numvehiclesEast;
     }
 
-    public void setNumVehicalsEast(int numVehicalsEast) {
-        this.numVehicalsEast = numVehicalsEast;
+     /**
+     * setter for vehicle on east
+     *
+     * @return void
+     *
+     */
+    public void setNumvehiclesEast(int numvehiclesEast) {
+        this.numvehiclesEast = numvehiclesEast;
     }
 
-    public int getNumVehicalsWest() {
-        return numVehicalsWest;
+     /**
+     * getter for vehicle on west
+     *
+     * @return int
+     *
+     */
+    public int getNumvehiclesWest() {
+        return numvehiclesWest;
     }
 
-    public void setNumVehicalsWest(int numVehicalsWest) {
-        this.numVehicalsWest = numVehicalsWest;
+     /**
+     * setter for vehicle on west
+     *
+     * @return void
+     *
+     */
+    public void setNumvehiclesWest(int numvehiclesWest) {
+        this.numvehiclesWest = numvehiclesWest;
     }
 
+     /**
+     * getter for StartStateimpl object 
+     *
+     * @return StreetLightsStateI
+     *
+     */
     public StreetLightsStateI getStartStateImpl() {
         return startStateImpl;
     }
 
+     /**
+     * getter for NorthGreenState object 
+     *
+     * @return StreetLightsStateI
+     *
+     */
     public StreetLightsStateI getNorthGreenState() {
         return northGreenState;
     }
 
+     /**
+     * getter for SouthGreenState object 
+     *
+     * @return StreetLightsStateI
+     *
+     */
     public StreetLightsStateI getSouthGreenState() {
         return southGreenState;
     }
 
+     /**
+     * getter for EastGreenState object 
+     *
+     * @return StreetLightsStateI
+     *
+     */
     public StreetLightsStateI getEastGreenState() {
         return eastGreenState;
     }
 
+     /**
+     * getter for WestGreenState object 
+     *
+     * @return StreetLightsStateI
+     *
+     */
     public StreetLightsStateI getWestGreenState() {
         return westGreenState;
     }
 
-    public int getMaxVehicalPass() {
-        return maxVehicalPass;
+     /**
+     * getter for max number vehicles can passed 
+     *
+     * @return int
+     *
+     */
+    public int getMaxvehiclePass() {
+        return maxvehiclePass;
     }
 
+    /**
+     * override toString to return current state of streetlight
+     *
+     * @return String
+     *
+     */
     @Override
     public String toString() {
         return "The current state of the StreetLight is" + streetLightsI.toString();
