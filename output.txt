@@ -1,0 +1,18 @@
+North is turned to green.
+2 car(s) added on east.
+1 car(s) added on north.
+1 car passed from north.
+2 car(s) added on north.
+2 cars passed from north.
+North is truned to red and East is turned to green.
+North is already red.
+6 car(s) added on east.
+2 cars passed from east.
+East is truned to red and South is turned to green.
+1 car(s) added on south.
+1 car passed from south.
+1 car(s) added on south.
+1 car passed from south.
+West is already red.
+All lights turned red.
+West is turned to green.

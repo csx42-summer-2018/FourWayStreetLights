@@ -14,7 +14,7 @@ import fourWayStreetLights.util.Results;
 public class StreetLightsContext {
 
     public static enum Directions {
-        NORTH, SOUTH, EAST, WEST
+        NORTH, SOUTH, EAST, WEST, ALL
     };
 
     public static enum TrafficLightColors {
@@ -30,10 +30,10 @@ public class StreetLightsContext {
 
     StreetLightsStateI streetLightsI;
 
-    private int numCarsNorth;
-    private int numCarsSouth;
-    private int numCarsEast;
-    private int numCarsWest;
+    private int numVehicalsNorth;
+    private int numVehicalsSouth;
+    private int numVehicalsEast;
+    private int numVehicalsWest;
 
     private Results results;
 
@@ -48,36 +48,36 @@ public class StreetLightsContext {
         streetLightsI = startStateImpl;
     }
 
-    public int getNumCarsNorth() {
-        return numCarsNorth;
+    public int getNumVehicalsNorth() {
+        return numVehicalsNorth;
     }
 
-    public void setNumCarsNorth(int numCarsNorth) {
-        this.numCarsNorth = numCarsNorth;
+    public void setNumVehicalsNorth(int numVehicalsNorth) {
+        this.numVehicalsNorth = numVehicalsNorth;
     }
 
-    public int getNumCarsSouth() {
-        return numCarsSouth;
+    public int getNumVehicalsSouth() {
+        return numVehicalsSouth;
     }
 
-    public void setNumCarsSouth(int numCarsSouth) {
-        this.numCarsSouth = numCarsSouth;
+    public void setNumVehicalsSouth(int numVehicalsSouth) {
+        this.numVehicalsSouth = numVehicalsSouth;
     }
 
-    public int getNumCarsEast() {
-        return numCarsEast;
+    public int getNumVehicalsEast() {
+        return numVehicalsEast;
     }
 
-    public void setNumCarsEast(int numCarsEast) {
-        this.numCarsEast = numCarsEast;
+    public void setNumVehicalsEast(int numVehicalsEast) {
+        this.numVehicalsEast = numVehicalsEast;
     }
 
-    public int getNumCarsWest() {
-        return numCarsWest;
+    public int getNumVehicalsWest() {
+        return numVehicalsWest;
     }
 
-    public void setNumCarsWest(int numCarsWest) {
-        this.numCarsWest = numCarsWest;
+    public void setNumVehicalsWest(int numVehicalsWest) {
+        this.numVehicalsWest = numVehicalsWest;
     }
 
     public StreetLightsStateI getStartStateImpl() {
@@ -104,24 +104,24 @@ public class StreetLightsContext {
         streetLightsI = streetLightsIParam;
     }
 
-    public void addCars(int numCars, Directions direction) {
-        boolean isPassCar = false;
+    public void addVehicals(Directions direction, int numVehicals) {
+        boolean isPassVehical = false;
         switch (direction) {
             case NORTH:
-                isPassCar = streetLightsI.addCarsToNorth(numCars);
+                isPassVehical = streetLightsI.addVehicalsToNorth(numVehicals);
                 break;
             case SOUTH:
-                isPassCar = streetLightsI.addCarsToSouth(numCars);
+                isPassVehical = streetLightsI.addVehicalsToSouth(numVehicals);
                 break;
             case EAST:
-                isPassCar = streetLightsI.addCarsToEast(numCars);
+                isPassVehical = streetLightsI.addVehicalsToEast(numVehicals);
                 break;
             case WEST:
-                isPassCar = streetLightsI.addCarsToWest(numCars);
+                isPassVehical = streetLightsI.addVehicalsToWest(numVehicals);
                 break;
         }
-        if (isPassCar) {
-            streetLightsI.passCars();
+        if (isPassVehical) {
+            streetLightsI.passVehicals();
         }
     }
 
@@ -168,7 +168,7 @@ public class StreetLightsContext {
                 }
                 break;
 
-            default:
+            case ALL:
                 streetLightsI.turnAllRed();
                 break;
         }

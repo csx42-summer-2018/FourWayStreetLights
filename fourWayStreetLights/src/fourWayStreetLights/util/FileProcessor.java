@@ -44,6 +44,7 @@ public class FileProcessor {
         Logger.writeMessage("Clossing a file in closeFile method in FileProcessor", Logger.DebugLevel.FILE_PROCESSOR);
         if (bfrRdr != null) {
             bfrRdr.close();
+            bfrRdr = null;
             Logger.writeMessage("File has been clossed successfully", Logger.DebugLevel.FILE_PROCESSOR);
         } else {
             Logger.writeMessage("There is no open file", Logger.DebugLevel.FILE_PROCESSOR);

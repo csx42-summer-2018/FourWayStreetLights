@@ -22,52 +22,52 @@ public class EastGreenState implements StreetLightsStateI {
     }
 
     @Override
-    public boolean addCarsToNorth(int numCars) {
-        numCars += streetLightsContext.getNumCarsNorth();
-        streetLightsContext.setNumCarsNorth(numCars);
-        results.storeNewResult(numCars + " car(s) added on north.");
+    public boolean addVehicalsToNorth(int numVehicals) {
+        results.storeNewResult(numVehicals + " vehical(s) added on north.");
+        numVehicals += streetLightsContext.getNumVehicalsNorth();
+        streetLightsContext.setNumVehicalsNorth(numVehicals);
         return false;
     }
 
     @Override
-    public boolean addCarsToSouth(int numCars) {
-        numCars += streetLightsContext.getNumCarsSouth();
-        streetLightsContext.setNumCarsSouth(numCars);
-        results.storeNewResult(numCars + " car(s) added on south.");
+    public boolean addVehicalsToSouth(int numVehicals) {
+        results.storeNewResult(numVehicals + " vehical(s) added on south.");
+        numVehicals += streetLightsContext.getNumVehicalsSouth();
+        streetLightsContext.setNumVehicalsSouth(numVehicals);
         return false;
     }
 
     @Override
-    public boolean addCarsToEast(int numCars) {
-        numCars += streetLightsContext.getNumCarsEast();
-        streetLightsContext.setNumCarsEast(numCars);
-        results.storeNewResult(numCars + " car(s) added on east.");
+    public boolean addVehicalsToEast(int numVehicals) {
+        results.storeNewResult(numVehicals + " vehical(s) added on east.");
+        numVehicals += streetLightsContext.getNumVehicalsEast();
+        streetLightsContext.setNumVehicalsEast(numVehicals);
         return true;
     }
 
     @Override
-    public boolean addCarsToWest(int numCars) {
-        numCars += streetLightsContext.getNumCarsWest();
-        streetLightsContext.setNumCarsWest(numCars);
-        results.storeNewResult(numCars + " car(s) added on west.");
+    public boolean addVehicalsToWest(int numVehicals) {
+        results.storeNewResult(numVehicals + " vehical(s) added on west.");
+        numVehicals += streetLightsContext.getNumVehicalsWest();
+        streetLightsContext.setNumVehicalsWest(numVehicals);
         return false;
     }
 
     @Override
-    public void passCars() {
-        int numCars = streetLightsContext.getNumCarsEast();
-        if (numCars > 1) {
-            numCars = numCars - 2;
-            streetLightsContext.setNumCarsEast(numCars);
-            results.storeNewResult("2 cars passed from east.");
+    public void passVehicals() {
+        int numVehicals = streetLightsContext.getNumVehicalsEast();
+        if (numVehicals > 1) {
+            numVehicals = numVehicals - 2;
+            streetLightsContext.setNumVehicalsEast(numVehicals);
+            results.storeNewResult("2 vehicals passed from east.");
             streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
             results.storeNewResult("East is truned to red and South is turned to green.");
-        } else if (numCars == 1) {
-            numCars = numCars - 1;
-            streetLightsContext.setNumCarsEast(numCars);
-            results.storeNewResult("1 car passed from east.");
+        } else if (numVehicals == 1) {
+            numVehicals = numVehicals - 1;
+            streetLightsContext.setNumVehicalsEast(numVehicals);
+            results.storeNewResult("1 vehical passed from east.");
         } else {
-            results.storeNewResult("There is no car to be pass from east.");
+            results.storeNewResult("There is no vehical to be pass from east.");
         }
     }
 
