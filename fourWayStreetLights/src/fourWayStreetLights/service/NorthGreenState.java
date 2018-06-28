@@ -11,12 +11,12 @@ import fourWayStreetLights.util.Results;
  *
  * @author amitk
  */
-public class StartStateImpl implements StreetLightsStateI {
+public class NorthGreenState implements StreetLightsStateI {
 
     private StreetLightsContext streetLightsContext;
     private Results results;
 
-    public StartStateImpl(StreetLightsContext streetLightsContextParam, Results resultsParam) {
+    public NorthGreenState(StreetLightsContext streetLightsContextParam, Results resultsParam) {
         this.streetLightsContext = streetLightsContextParam;
         this.results = resultsParam;
     }
@@ -26,7 +26,7 @@ public class StartStateImpl implements StreetLightsStateI {
         numCars += streetLightsContext.getNumCarsNorth();
         streetLightsContext.setNumCarsNorth(numCars);
         results.storeNewResult(numCars + " car(s) added on north.");
-        return false;
+        return true;
     }
 
     @Override
@@ -55,18 +55,32 @@ public class StartStateImpl implements StreetLightsStateI {
 
     @Override
     public void passCars() {
-        results.storeNewResult("No car pass as all lights are red");
+        int numCars = streetLightsContext.getNumCarsNorth();
+        if (numCars > 1) {
+            numCars = numCars - 2;
+            streetLightsContext.setNumCarsNorth(numCars);
+            results.storeNewResult("2 cars passed from north.");
+            streetLightsContext.SetState(streetLightsContext.getEastGreenState());
+            results.storeNewResult("North is truned to red and East is turned to green.");
+        } else if (numCars == 1) {
+            numCars = numCars - 1;
+            streetLightsContext.setNumCarsNorth(numCars);
+            results.storeNewResult("1 car passed from north.");
+        } else {
+            results.storeNewResult("There is no car to be pass from north.");
+        }
     }
 
     @Override
     public void turnNorthRed() {
-        results.storeNewResult("North is already red.");
+        streetLightsContext.SetState(streetLightsContext.getEastGreenState());
+        results.storeNewResult("North is turned to red and East is turned to green.");
     }
 
     @Override
     public void turnNorthGreen() {
-        streetLightsContext.SetState(streetLightsContext.getNorthGreenState());
-        results.storeNewResult("North is turned to green.");
+        results.storeNewResult("North is already green.");
+
     }
 
     @Override
@@ -77,18 +91,18 @@ public class StartStateImpl implements StreetLightsStateI {
     @Override
     public void turnSouthGreen() {
         streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
-        results.storeNewResult("South is turned to green.");
+        results.storeNewResult("South is turned to green and East is turned to red.");
     }
 
     @Override
     public void turnEastRed() {
-        results.storeNewResult("South is already red.");
+        results.storeNewResult("East is already red.");
     }
 
     @Override
     public void turnEastGreen() {
         streetLightsContext.SetState(streetLightsContext.getEastGreenState());
-        results.storeNewResult("East is turned to green.");
+        results.storeNewResult("East is turned to green and North is turned to red.");
     }
 
     @Override
@@ -99,11 +113,12 @@ public class StartStateImpl implements StreetLightsStateI {
     @Override
     public void turnWestGreen() {
         streetLightsContext.SetState(streetLightsContext.getWestGreenState());
-        results.storeNewResult("West is turned to green.");
+        results.storeNewResult("West is turned to green and North is turned to red.");
     }
 
     @Override
     public void turnAllRed() {
-        results.storeNewResult("All lights are already red.");
+        streetLightsContext.SetState(streetLightsContext.getStartStateImpl());
+        results.storeNewResult("All lights turned red.");
     }
 }
