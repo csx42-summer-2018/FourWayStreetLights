@@ -63,4 +63,9 @@ public class FileProcessor {
         Logger.writeMessage("returning read line from read line method in fileProcessor", Logger.DebugLevel.FILE_PROCESSOR);
         return line;
     }
+
+    @Override
+    public String toString() {
+        return inputFile.getName();
+    }
 }

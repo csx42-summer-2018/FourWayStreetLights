@@ -8,6 +8,7 @@ package fourWayStreetLights.service;
 import fourWayStreetLights.service.StreetLightsContext.Directions;
 import fourWayStreetLights.service.StreetLightsContext.TrafficLightColors;
 import fourWayStreetLights.util.FileProcessor;
+import fourWayStreetLights.util.Logger;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -26,6 +27,8 @@ public class ProcessInputFile {
     }
 
     public void processInput() throws IOException {
+        Logger.writeMessage("Entering a processInput() method of ProcessInputFile Class", Logger.DebugLevel.PROCESS_INPUT_FILE);
+
         fp.openFile();
         String line = "";
         while ((line = fp.readLine()) != null) {
@@ -73,5 +76,11 @@ public class ProcessInputFile {
                 }
             }
         }
+        Logger.writeMessage("Leaving a processInput() method of ProcessInputFile Class", Logger.DebugLevel.PROCESS_INPUT_FILE);
+    }
+
+    @Override
+    public String toString() {
+        return "Name of the file to process is " + fp.toString();
     }
 }

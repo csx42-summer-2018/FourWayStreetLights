@@ -5,6 +5,7 @@
  */
 package fourWayStreetLights.service;
 
+import fourWayStreetLights.util.Logger;
 import fourWayStreetLights.util.Results;
 
 /**
@@ -15,6 +16,7 @@ public class EastGreenState implements StreetLightsStateI {
 
     private StreetLightsContext streetLightsContext;
     private Results results;
+    private int vehicalsPassed = 0;
 
     public EastGreenState(StreetLightsContext streetLightsContextParam, Results resultsParam) {
         this.streetLightsContext = streetLightsContextParam;
@@ -23,101 +25,174 @@ public class EastGreenState implements StreetLightsStateI {
 
     @Override
     public boolean addVehicalsToNorth(int numVehicals) {
+        Logger.writeMessage("Entering a addVehicalsToNorth() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult(numVehicals + " vehical(s) added on north.");
         numVehicals += streetLightsContext.getNumVehicalsNorth();
         streetLightsContext.setNumVehicalsNorth(numVehicals);
+        Logger.writeMessage("Leaving a addVehicalsToNorth() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
         return false;
+
     }
 
     @Override
     public boolean addVehicalsToSouth(int numVehicals) {
+        Logger.writeMessage("Entering a addVehicalsToSouth() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult(numVehicals + " vehical(s) added on south.");
         numVehicals += streetLightsContext.getNumVehicalsSouth();
         streetLightsContext.setNumVehicalsSouth(numVehicals);
+        Logger.writeMessage("Leaving a addVehicalsToSouth() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         return false;
     }
 
     @Override
     public boolean addVehicalsToEast(int numVehicals) {
+        Logger.writeMessage("Entering a addVehicalsToEast() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult(numVehicals + " vehical(s) added on east.");
         numVehicals += streetLightsContext.getNumVehicalsEast();
         streetLightsContext.setNumVehicalsEast(numVehicals);
+        Logger.writeMessage("Leaving a addVehicalsToEast() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         return true;
     }
 
     @Override
     public boolean addVehicalsToWest(int numVehicals) {
+        Logger.writeMessage("Entering a addVehicalsToWest() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult(numVehicals + " vehical(s) added on west.");
         numVehicals += streetLightsContext.getNumVehicalsWest();
         streetLightsContext.setNumVehicalsWest(numVehicals);
+        Logger.writeMessage("Leaving a addVehicalsToWest() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         return false;
     }
 
     @Override
     public void passVehicals() {
+        Logger.writeMessage("Entering a passVehicals() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         int numVehicals = streetLightsContext.getNumVehicalsEast();
-        if (numVehicals > 1) {
-            numVehicals = numVehicals - 2;
+        if (numVehicals > 0) {
+            int vehicalPassedThisCall = 0;
+            for (int i = 1; i <= numVehicals; i++) {
+                vehicalPassedThisCall += 1;
+                vehicalsPassed += 1;
+                if (vehicalsPassed == streetLightsContext.getMaxVehicalPass()) {
+                    break;
+                }
+            }
+            numVehicals = numVehicals - vehicalPassedThisCall;
             streetLightsContext.setNumVehicalsEast(numVehicals);
-            results.storeNewResult("2 vehicals passed from east.");
-            streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
-            results.storeNewResult("East is truned to red and South is turned to green.");
-        } else if (numVehicals == 1) {
-            numVehicals = numVehicals - 1;
-            streetLightsContext.setNumVehicalsEast(numVehicals);
-            results.storeNewResult("1 vehical passed from east.");
+            results.storeNewResult(vehicalPassedThisCall + " vehical(s) passed from east.");
+
         } else {
             results.storeNewResult("There is no vehical to be pass from east.");
         }
+
+        if (vehicalsPassed == streetLightsContext.getMaxVehicalPass()) {
+            vehicalsPassed = 0;
+            results.storeNewResult("East is truned to red and South is turned to green.");
+            streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
+        }
+        Logger.writeMessage("Leaving a passVehicals() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
     }
 
     @Override
     public void turnNorthRed() {
+        Logger.writeMessage("Entering a turnNorthRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("North is already red.");
+
+        Logger.writeMessage("Leaving a turnNorthRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
     }
 
     @Override
     public void turnNorthGreen() {
-        streetLightsContext.SetState(streetLightsContext.getNorthGreenState());
+        Logger.writeMessage("Entering a turnNorthGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("North is turned to green and East is turned to red.");
+        streetLightsContext.SetState(streetLightsContext.getNorthGreenState());
+
+        Logger.writeMessage("Leaving a turnNorthGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
     }
 
     @Override
     public void turnSouthRed() {
+        Logger.writeMessage("Entering a turnSouthRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("South is already red.");
+
+        Logger.writeMessage("Leaving a turnSouthRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
     }
 
     @Override
     public void turnSouthGreen() {
-        streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
+        Logger.writeMessage("Entering a turnSouthGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("South is turned to green and East is turned to red.");
+        streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
+
+        Logger.writeMessage("Leaving a turnSouthGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
     }
 
     @Override
     public void turnEastRed() {
-        streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
+        Logger.writeMessage("Entering a turnEastRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("East is turned to red and South is turned to green.");
+        streetLightsContext.SetState(streetLightsContext.getSouthGreenState());
+
+        Logger.writeMessage("Leaving a turnEastRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
     }
 
     @Override
     public void turnEastGreen() {
+        Logger.writeMessage("Entering a turnEastGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("East is already green.");
+
+        Logger.writeMessage("Leaving a turnEastGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
     }
 
     @Override
     public void turnWestRed() {
+        Logger.writeMessage("Entering a turnWestRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("West is already red.");
+
+        Logger.writeMessage("Leaving a turnWestRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
     }
 
     @Override
     public void turnWestGreen() {
-        streetLightsContext.SetState(streetLightsContext.getWestGreenState());
+        Logger.writeMessage("Entering a turnWestGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("West is turned to green and East is turned to red.");
+        streetLightsContext.SetState(streetLightsContext.getWestGreenState());
+
+        Logger.writeMessage("Leaving a turnWestGreen() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
     }
 
     @Override
     public void turnAllRed() {
-        streetLightsContext.SetState(streetLightsContext.getStartStateImpl());
+        Logger.writeMessage("Entering a turnAllRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+
         results.storeNewResult("All lights turned red.");
+        streetLightsContext.SetState(streetLightsContext.getStartStateImpl());
+
+        Logger.writeMessage("Leaving a turnAllRed() method of EastGreenState Class", Logger.DebugLevel.EAST_GREEN_STATE);
+    }
+    
+     @Override
+     public String toString() {
+        return "East Green State";
     }
 }

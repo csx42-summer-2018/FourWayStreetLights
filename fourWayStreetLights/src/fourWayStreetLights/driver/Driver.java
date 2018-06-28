@@ -23,7 +23,7 @@ public class Driver {
     public static void main(String[] args) {
         String inputFileName = "C:\\My Data\\BU Courses\\BU Courses Summer 2018\\amit_kumar_assign_2\\input.txt";
         String outFileName = "C:\\My Data\\BU Courses\\BU Courses Summer 2018\\amit_kumar_assign_2\\output.txt";
-        int debugLevelIn = 0;
+        int debugLevelIn = 5;
         
 //        String inputFileName = "";
 //        String outFileName = "";

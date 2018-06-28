@@ -5,6 +5,7 @@
  */
 package fourWayStreetLights.service;
 
+import fourWayStreetLights.util.Logger;
 import fourWayStreetLights.util.Results;
 
 /**
@@ -35,6 +36,8 @@ public class StreetLightsContext {
     private int numVehicalsEast;
     private int numVehicalsWest;
 
+    private final int maxVehicalPass = 2;
+
     private Results results;
 
     public StreetLightsContext(Results resultsParam) {
@@ -46,6 +49,89 @@ public class StreetLightsContext {
         westGreenState = new WestGreenState(this, results);
 
         streetLightsI = startStateImpl;
+    }
+
+    public void SetState(StreetLightsStateI streetLightsIParam) {
+        Logger.writeMessage("Entering a SetState() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+
+        streetLightsI = streetLightsIParam;
+        streetLightsI.passVehicals();
+        Logger.writeMessage("Leaving a SetState() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+    }
+
+    public void addVehicals(Directions direction, int numVehicals) {
+        Logger.writeMessage("Entering a addVehicals() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+
+        boolean isPassVehical = false;
+        switch (direction) {
+            case NORTH:
+                isPassVehical = streetLightsI.addVehicalsToNorth(numVehicals);
+                break;
+            case SOUTH:
+                isPassVehical = streetLightsI.addVehicalsToSouth(numVehicals);
+                break;
+            case EAST:
+                isPassVehical = streetLightsI.addVehicalsToEast(numVehicals);
+                break;
+            case WEST:
+                isPassVehical = streetLightsI.addVehicalsToWest(numVehicals);
+                break;
+        }
+        if (isPassVehical) {
+            streetLightsI.passVehicals();
+        }
+        Logger.writeMessage("Leaving a addVehicals() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+    }
+
+    public void turnLight(Directions direction, TrafficLightColors tfColor) {
+        Logger.writeMessage("Entering a turnLight() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
+        switch (direction) {
+            case NORTH:
+                switch (tfColor) {
+                    case GREEN:
+                        streetLightsI.turnNorthGreen();
+                        break;
+                    case RED:
+                        streetLightsI.turnNorthRed();
+                        break;
+                }
+                break;
+            case SOUTH:
+                switch (tfColor) {
+                    case GREEN:
+                        streetLightsI.turnSouthGreen();
+                        break;
+                    case RED:
+                        streetLightsI.turnSouthRed();
+                        break;
+                }
+                break;
+            case EAST:
+                switch (tfColor) {
+                    case GREEN:
+                        streetLightsI.turnEastGreen();
+                        break;
+                    case RED:
+                        streetLightsI.turnEastRed();
+                        break;
+                }
+                break;
+            case WEST:
+                switch (tfColor) {
+                    case GREEN:
+                        streetLightsI.turnWestGreen();
+                        break;
+                    case RED:
+                        streetLightsI.turnWestRed();
+                        break;
+                }
+                break;
+
+            case ALL:
+                streetLightsI.turnAllRed();
+                break;
+        }
+        Logger.writeMessage("Leaving a turnLight() method of StreetLightsContext Class", Logger.DebugLevel.STREET_LIGHTS_CONTEXT);
     }
 
     public int getNumVehicalsNorth() {
@@ -100,78 +186,12 @@ public class StreetLightsContext {
         return westGreenState;
     }
 
-    public void SetState(StreetLightsStateI streetLightsIParam) {
-        streetLightsI = streetLightsIParam;
+    public int getMaxVehicalPass() {
+        return maxVehicalPass;
     }
 
-    public void addVehicals(Directions direction, int numVehicals) {
-        boolean isPassVehical = false;
-        switch (direction) {
-            case NORTH:
-                isPassVehical = streetLightsI.addVehicalsToNorth(numVehicals);
-                break;
-            case SOUTH:
-                isPassVehical = streetLightsI.addVehicalsToSouth(numVehicals);
-                break;
-            case EAST:
-                isPassVehical = streetLightsI.addVehicalsToEast(numVehicals);
-                break;
-            case WEST:
-                isPassVehical = streetLightsI.addVehicalsToWest(numVehicals);
-                break;
-        }
-        if (isPassVehical) {
-            streetLightsI.passVehicals();
-        }
+    @Override
+    public String toString() {
+        return "The current state of the StreetLight is" + streetLightsI.toString();
     }
-
-    public void turnLight(Directions direction, TrafficLightColors tfColor) {
-        switch (direction) {
-            case NORTH:
-                switch (tfColor) {
-                    case GREEN:
-                        streetLightsI.turnNorthGreen();
-                        break;
-                    case RED:
-                        streetLightsI.turnNorthRed();
-                        break;
-                }
-                break;
-            case SOUTH:
-                switch (tfColor) {
-                    case GREEN:
-                        streetLightsI.turnSouthGreen();
-                        break;
-                    case RED:
-                        streetLightsI.turnSouthRed();
-                        break;
-                }
-                break;
-            case EAST:
-                switch (tfColor) {
-                    case GREEN:
-                        streetLightsI.turnEastGreen();
-                        break;
-                    case RED:
-                        streetLightsI.turnEastRed();
-                        break;
-                }
-                break;
-            case WEST:
-                switch (tfColor) {
-                    case GREEN:
-                        streetLightsI.turnWestGreen();
-                        break;
-                    case RED:
-                        streetLightsI.turnWestRed();
-                        break;
-                }
-                break;
-
-            case ALL:
-                streetLightsI.turnAllRed();
-                break;
-        }
-    }
-
 }
