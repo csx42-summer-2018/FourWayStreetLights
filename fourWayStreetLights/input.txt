@@ -1,0 +1,21 @@
+Add 1 vehicle on north
+Add 1 vehicle on south
+Add 1 vehicle on east
+Add 1 vehicle on west
+Turn north green
+Add 1 vehicles to north
+Add 1 vehicle to east
+Add 1 vehicle to south
+Add 1 vehicle to west
+Turn west green
+Turn south green
+Turn north green
+Turn east green
+Turn all red
+Turn east green
+Add 3 vehicles to east 
+Add 4 vehicle to south
+Add 1 vehicle to west
+Add 1 vehicle to west
+Add 2 vehicle to north
+Turn all red
